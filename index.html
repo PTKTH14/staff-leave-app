@@ -17,32 +17,23 @@
     * { box-sizing:border-box; }
     html,body { width:100%; height:100%; margin:0; overflow:hidden; background:var(--paper); color:var(--text); font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif; }
     body { padding-top:env(safe-area-inset-top); padding-bottom:env(safe-area-inset-bottom); }
-    .app { height:100%; display:grid; grid-template-rows:56px minmax(0,1fr); }
-    .bar { display:flex; align-items:center; gap:10px; padding:7px max(12px,env(safe-area-inset-right)) 7px max(12px,env(safe-area-inset-left)); background:#fff; border-bottom:3px solid var(--gold); box-shadow:0 1px 8px rgba(23,34,59,.12); z-index:3; }
-    .brand { display:flex; align-items:center; gap:9px; min-width:0; font-size:16px; font-weight:700; }
-    .brand img { width:38px; height:38px; border-radius:7px; }
-    .brand span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .actions { display:flex; gap:7px; margin-left:auto; }
+    .app { height:100%; }
     button,a.button { min-height:39px; padding:7px 12px; border:1px solid var(--line); border-radius:5px; background:#fff; color:var(--navy); font:700 14px Tahoma,Arial,sans-serif; text-decoration:none; cursor:pointer; align-items:center; justify-content:center; }
     button { display:none; }
     button.visible,a.button { display:inline-flex; }
     button.primary { background:var(--navy); border-color:var(--navy); color:#fff; }
-    .stage { position:relative; min-height:0; background:#e1e4e9; }
-    iframe { display:block; width:100%; height:100%; border:0; background:#fff; }
-    .loading { position:absolute; inset:0; z-index:2; display:grid; place-items:center; background:var(--paper); text-align:center; padding:24px; transition:opacity .2s; }
-    .loading.hidden { opacity:0; pointer-events:none; }
-    .loading img { width:88px; height:88px; border-radius:16px; margin-bottom:13px; }
-    .loading strong { display:block; font-size:20px; margin-bottom:5px; }
-    .loading p { margin:0; color:#697386; font-size:14px; }
+    .stage { min-height:100%; display:grid; place-items:center; padding:24px; background:var(--paper); text-align:center; }
+    .launch { width:min(100%,440px); }
+    .launch img { width:92px; height:92px; border-radius:18px; margin-bottom:18px; box-shadow:0 8px 20px rgba(23,34,59,.16); }
+    .launch h1 { margin:0 0 8px; font-size:22px; }
+    .launch p { margin:0 auto 22px; max-width:360px; color:#5e687b; font-size:15px; line-height:1.7; }
+    .launch .open-system { display:inline-flex; min-height:46px; min-width:210px; padding:10px 18px; border:1px solid var(--navy); border-radius:6px; background:var(--navy); color:#fff; font:700 16px Tahoma,Arial,sans-serif; text-decoration:none; align-items:center; justify-content:center; }
+    .launch .minor-actions { display:flex; justify-content:center; gap:8px; margin-top:14px; }
     .tip { display:none; position:fixed; left:12px; right:12px; bottom:max(12px,env(safe-area-inset-bottom)); z-index:8; padding:14px 44px 14px 15px; background:#fff; border:1px solid var(--line); border-radius:6px; box-shadow:0 8px 28px rgba(23,34,59,.24); font-size:14px; line-height:1.65; }
     .tip.show { display:block; }
     .tip .close { display:block; position:absolute; top:5px; right:5px; width:34px; min-height:34px; padding:0; border:0; font-size:21px; }
     @media (display-mode:standalone) { #installHelp { display:none; } }
     @media (max-width:600px) {
-      .app { grid-template-rows:52px minmax(0,1fr); }
-      .bar { padding-top:5px; padding-bottom:5px; }
-      .brand { font-size:14px; }
-      .brand img { width:34px; height:34px; }
       button,a.button { min-width:40px; padding:6px 9px; }
       .label-wide { display:none; }
     }
@@ -50,17 +41,17 @@
 </head>
 <body>
   <main class="app">
-    <header class="bar">
-      <div class="brand"><img src="./icons/icon-192.png" alt=""><span>ระบบลาเจ้าหน้าที่</span></div>
-      <div class="actions">
-        <button id="installButton" class="primary" type="button">ติดตั้งแอป</button>
-        <button id="installHelp" class="visible" type="button">วิธีติดตั้ง</button>
-        <a class="button" href="https://script.google.com/macros/s/AKfycbwVwd_dU7hjJ_SqZxnYh7hwfuWDhRfF0hpg4MSUM_-T1O1IhtoE8yCjY3Vc5iecJZJJPg/exec" target="_blank" rel="noopener" aria-label="เปิดระบบในแท็บใหม่"><span class="label-wide">เปิดแยก</span>&nbsp;↗</a>
-      </div>
-    </header>
     <section class="stage">
-      <div id="loading" class="loading"><div><img src="./icons/icon-192.png" alt=""><strong>ระบบลาเจ้าหน้าที่</strong><p>กำลังเปิดระบบ...</p></div></div>
-      <iframe id="leaveSystem" title="ระบบลาเจ้าหน้าที่" src="https://script.google.com/macros/s/AKfycbwVwd_dU7hjJ_SqZxnYh7hwfuWDhRfF0hpg4MSUM_-T1O1IhtoE8yCjY3Vc5iecJZJJPg/exec" allow="clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="launch">
+        <img src="./icons/icon-192.png" alt="">
+        <h1>ระบบลาเจ้าหน้าที่</h1>
+        <p>กดปุ่มด้านล่างเพื่อเข้าใช้งานระบบลา</p>
+        <a class="open-system" href="https://script.google.com/macros/s/AKfycbwVwd_dU7hjJ_SqZxnYh7hwfuWDhRfF0hpg4MSUM_-T1O1IhtoE8yCjY3Vc5iecJZJJPg/exec">เปิดระบบลา</a>
+        <div class="minor-actions">
+          <button id="installButton" class="primary" type="button">ติดตั้งแอป</button>
+          <button id="installHelp" class="visible" type="button">วิธีติดตั้ง</button>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -71,14 +62,10 @@
   </aside>
 
   <script>
-    const frame = document.getElementById('leaveSystem');
-    const loading = document.getElementById('loading');
     const tip = document.getElementById('installTip');
     const installButton = document.getElementById('installButton');
     let installPrompt = null;
 
-    frame.addEventListener('load', () => loading.classList.add('hidden'));
-    setTimeout(() => loading.classList.add('hidden'), 9000);
     document.getElementById('installHelp').addEventListener('click', () => tip.classList.add('show'));
     document.getElementById('closeTip').addEventListener('click', () => tip.classList.remove('show'));
 

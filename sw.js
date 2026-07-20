@@ -1,4 +1,4 @@
-const CACHE_NAME = 'staff-leave-launcher-v1';
+const CACHE_NAME = 'staff-leave-launcher-v2';
 const SHELL = [
   './',
   './index.html',
