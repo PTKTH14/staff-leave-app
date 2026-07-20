@@ -62,6 +62,12 @@
   </aside>
 
   <script>
+    const systemUrl = 'https://script.google.com/macros/s/AKfycbwVwd_dU7hjJ_SqZxnYh7hwfuWDhRfF0hpg4MSUM_-T1O1IhtoE8yCjY3Vc5iecJZJJPg/exec';
+    const isInstalledApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+    // A home-screen launch should go straight to the leave system.
+    if (isInstalledApp) window.location.replace(systemUrl);
+
     const tip = document.getElementById('installTip');
     const installButton = document.getElementById('installButton');
     let installPrompt = null;
